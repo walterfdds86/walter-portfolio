@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walter Ferreira | Estrategista Sênior de Marketing & Lançamentos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a; --bg2: #111111; --bg3: #181818; --card: #141414;
+      --gold: #c9a84c; --gold2: #e2c46e; --gold-dim: rgba(201,168,76,0.10);
+      --white: #ffffff; --text: #d4d4d4; --muted: #777777;
+      --border: #222222; --border2: #2e2e2e;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0 40px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: 0.5px; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* LAYOUT */
+    section { padding: 100px 40px; }
+    .container { max-width: 960px; margin: 0 auto; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-size: 34px; font-weight: 800; color: var(--white); line-height: 1.2; margin-bottom: 14px; }
+    .section-sub { font-size: 15px; color: var(--muted); max-width: 560px; line-height: 1.75; }
+    .divider { width: 48px; height: 2px; background: var(--gold); margin: 20px 0 40px; }
+
+    /* HERO */
+    #hero { padding-top: 120px; padding-bottom: 100px; background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,0.05) 0%, transparent 70%), var(--bg); }
+    .hero-inner { display: flex; align-items: center; gap: 80px; }
+    .hero-content { flex: 1; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.22); border-radius: 20px; padding: 5px 14px; font-size: 11px; font-weight: 600; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px; }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+    .hero-name { font-size: 54px; font-weight: 900; color: var(--white); line-height: 1.05; letter-spacing: -1px; margin-bottom: 10px; }
+    .hero-title { font-size: 17px; font-weight: 500; color: var(--gold); letter-spacing: 0.5px; margin-bottom: 22px; }
+    .hero-tagline { font-size: 15px; color: var(--muted); line-height: 1.85; max-width: 460px; margin-bottom: 38px; border-left: 2px solid var(--gold); padding-left: 16px; font-style: italic; }
+    .hero-metrics { display: flex; gap: 28px; flex-wrap: wrap; }
+    .metric { display: flex; flex-direction: column; }
+    .metric-value { font-size: 26px; font-weight: 800; color: var(--gold); line-height: 1; }
+    .metric-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+    .metric-sep { width: 1px; background: var(--border2); align-self: stretch; }
+    .hero-photo-wrap { flex-shrink: 0; }
+    .hero-photo { width: 250px; height: 290px; object-fit: cover; object-position: center top; border-radius: 12px; filter: grayscale(15%); border: 1px solid var(--border2); box-shadow: 0 0 60px rgba(201,168,76,0.10), 0 20px 60px rgba(0,0,0,0.5); }
+
+    /* SOBRE */
+    #sobre { background: var(--bg2); }
+    .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+    .sobre-text { font-size: 15px; color: var(--text); line-height: 1.85; }
+    .sobre-text p { margin-bottom: 16px; }
+    .sobre-text strong { color: var(--white); }
+    .sobre-highlight { background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.18); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .sobre-stat { display: flex; flex-direction: column; }
+    .sobre-stat .num { font-size: 32px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .sobre-stat .lbl { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; }
+    .sobre-sep { height: 1px; background: var(--border2); }
+    .sobre-quote { font-size: 13px; color: var(--muted); font-style: italic; line-height: 1.7; border-left: 2px solid var(--gold); padding-left: 14px; margin-top: 4px; }
+
+    /* CASES */
+    #cases { background: var(--bg); }
+    .cases-intro { background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.18); border-radius: 8px; padding: 14px 18px; font-size: 13px; color: var(--gold2); font-style: italic; margin-bottom: 36px; line-height: 1.6; }
+    .case-card { background: var(--card); border: 1px solid var(--border2); border-radius: 12px; overflow: hidden; margin-bottom: 20px; transition: border-color 0.2s; }
+    .case-card:hover { border-color: rgba(201,168,76,0.25); }
+    .case-card.featured { border-left: 3px solid var(--gold); }
+    .case-header { padding: 22px 26px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .case-company { font-size: 19px; font-weight: 800; color: var(--white); margin-bottom: 3px; }
+    .case-names { font-size: 12px; color: var(--gold); font-weight: 500; margin-bottom: 3px; }
+    .case-meta { font-size: 11px; color: var(--muted); }
+    .case-badge { flex-shrink: 0; background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.22); border-radius: 5px; padding: 5px 10px; font-size: 10px; font-weight: 600; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+    .case-body { padding: 22px 26px; }
+    .case-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 18px; }
+    .result-chip { background: var(--bg3); border: 1px solid var(--border2); border-radius: 8px; padding: 12px 14px; }
+    .result-chip .num { font-size: 21px; font-weight: 800; color: var(--gold); line-height: 1; }
+    .result-chip .desc { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+    .case-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .case-bullets li { font-size: 13px; color: var(--text); padding-left: 16px; position: relative; line-height: 1.55; }
+    .case-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 11px; top: 1px; }
+    .case-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+    .tag { background: var(--bg3); border: 1px solid var(--border2); border-radius: 4px; padding: 3px 9px; font-size: 10px; color: var(--muted); font-weight: 500; }
+
+    /* IA */
+    #ia { background: var(--bg2); }
+    .ia-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; margin-top: 36px; }
+    .ia-card { background: var(--card); border: 1px solid var(--border2); border-radius: 10px; padding: 18px; transition: border-color 0.2s, transform 0.2s; }
+    .ia-card:hover { border-color: rgba(201,168,76,0.25); transform: translateY(-2px); }
+    .ia-icon { font-size: 18px; margin-bottom: 8px; }
+    .ia-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 5px; }
+    .ia-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
+    .ia-link { font-size: 11px; color: var(--gold); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 3px; }
+    .ia-link:hover { color: var(--gold2); }
+    .ia-link::after { content: '↗'; font-size: 10px; }
+
+    /* GESTÃO */
+    #gestao { background: var(--bg); }
+    .gestao-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+    .gestao-card { background: var(--card); border: 1px solid var(--border2); border-radius: 10px; padding: 22px; text-align: center; }
+    .gestao-num { font-size: 38px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 5px; }
+    .gestao-company { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 5px; }
+    .gestao-role { font-size: 11px; color: var(--gold); font-weight: 500; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    .gestao-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .gestao-team-types { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; justify-content: center; }
+    .gestao-tag { background: var(--bg3); border: 1px solid var(--border); border-radius: 3px; padding: 2px 7px; font-size: 10px; color: var(--muted); }
+
+    /* SKILLS */
+    #skills { background: var(--bg2); }
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 36px; }
+    .skill-group { background: var(--card); border: 1px solid var(--border2); border-radius: 10px; padding: 22px; }
+    .skill-group-title { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+    .skill-list { display: flex; flex-direction: column; gap: 9px; }
+    .skill-item { display: flex; align-items: center; gap: 10px; }
+    .skill-bar-wrap { flex: 1; height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden; }
+    .skill-bar { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold2)); border-radius: 2px; }
+    .skill-name { font-size: 12px; color: var(--text); min-width: 150px; }
+
+    /* FORMAÇÃO */
+    #formacao { background: var(--bg); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+    .form-card { background: var(--card); border: 1px solid var(--border2); border-radius: 10px; padding: 20px; }
+    .form-inst { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .form-course { font-size: 13px; color: var(--text); margin-bottom: 3px; }
+    .form-period { font-size: 11px; color: var(--muted); }
+    .form-type { display: inline-block; background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.2); border-radius: 3px; padding: 2px 8px; font-size: 10px; color: var(--gold); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+
+    /* PORTUS */
+    #portus { background: linear-gradient(135deg, #0d0800 0%, #0a0a0a 50%, #0d0a00 100%); border-top: 1px solid rgba(201,168,76,0.12); border-bottom: 1px solid rgba(201,168,76,0.12); }
+    .portus-inner { max-width: 700px; margin: 0 auto; }
+    .portus-letter { background: var(--card); border: 1px solid rgba(201,168,76,0.18); border-radius: 12px; padding: 38px 46px; position: relative; }
+    .portus-letter::before { content: '"'; position: absolute; top: -18px; left: 38px; font-size: 72px; color: var(--gold); font-family: Georgia, serif; line-height: 1; opacity: 0.4; }
+    .portus-to { font-size: 11px; color: var(--gold); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 22px; }
+    .portus-text { font-size: 15px; color: var(--text); line-height: 1.9; margin-bottom: 18px; }
+    .portus-text strong { color: var(--white); }
+    .portus-highlight { background: var(--gold-dim); border-left: 3px solid var(--gold); padding: 14px 18px; border-radius: 0 8px 8px 0; font-size: 14px; color: var(--gold2); font-style: italic; line-height: 1.7; margin: 22px 0; }
+    .portus-sign { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--border); font-size: 14px; color: var(--white); font-weight: 600; }
+    .portus-sign span { display: block; font-size: 11px; color: var(--muted); font-weight: 400; margin-top: 3px; }
+
+    /* CONTATO */
+    #contato { background: var(--bg2); }
+    .contato-grid { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 36px; }
+    .contato-btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 600; transition: all 0.2s; }
+    .btn-gold { background: var(--gold); color: #000; }
+    .btn-gold:hover { background: var(--gold2); transform: translateY(-1px); }
+    .btn-outline { background: transparent; border: 1px solid var(--border2); color: var(--text); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+    .contato-info { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 22px 40px; text-align: center; font-size: 11px; color: var(--muted); position: relative; }
+    .admin-trigger-area { cursor: pointer; user-select: none; display: inline-block; padding: 4px 8px; border-radius: 4px; transition: background 0.2s; }
+    .admin-trigger-area:hover { background: rgba(201,168,76,0.08); color: var(--gold); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 72px 20px; }
+      .hero-inner { flex-direction: column-reverse; gap: 36px; text-align: center; }
+      .hero-name { font-size: 38px; }
+      .hero-photo { width: 190px; height: 220px; }
+      .hero-metrics { justify-content: center; }
+      .hero-tagline { margin: 0 auto 36px; text-align: left; }
+      .sobre-grid, .gestao-grid, .skills-grid, .form-grid { grid-template-columns: 1fr; }
+      .portus-letter { padding: 26px 22px; }
+      .case-header { flex-direction: column; }
+      .case-results { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── ADMIN STYLES ── */
+    .wf-edit-mode .e-zone {
+      outline: 2px dashed rgba(201,168,76,0.45) !important;
+      outline-offset: 3px;
+      border-radius: 4px;
+      cursor: text;
+      min-height: 20px;
+    }
+    .wf-edit-mode .e-zone:focus {
+      outline: 2px solid var(--gold) !important;
+      background: rgba(201,168,76,0.04);
+    }
+    .wf-edit-mode .e-zone:empty::before {
+      content: 'Clique para editar...';
+      color: rgba(201,168,76,0.4);
+      font-style: italic;
+      pointer-events: none;
+    }
+
+    #wf-admin-bar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: #1a1200;
+      border-top: 2px solid var(--gold);
+      padding: 12px 24px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.6);
+    }
+    .wf-bar-left { display: flex; align-items: center; gap: 10px; }
+    .wf-bar-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: wf-pulse 1.5s ease-in-out infinite; }
+    @keyframes wf-pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .wf-bar-label { font-size: 13px; font-weight: 600; color: var(--gold); font-family: 'Inter', sans-serif; }
+    .wf-bar-hint { font-size: 11px; color: var(--muted); font-family: 'Inter', sans-serif; }
+    .wf-bar-actions { display: flex; gap: 10px; }
+    .wf-btn { padding: 8px 18px; border-radius: 6px; border: none; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+    .wf-btn-primary { background: var(--gold); color: #000; }
+    .wf-btn-primary:hover:not(:disabled) { background: var(--gold2); transform: translateY(-1px); }
+    .wf-btn-primary:disabled { opacity: 0.5; cursor: wait; }
+    .wf-btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border2); }
+    .wf-btn-ghost:hover { color: var(--text); border-color: var(--border2); }
+    .wf-btn-settings { background: transparent; color: var(--muted); border: 1px solid var(--border2); padding: 8px 12px; }
+    .wf-btn-settings:hover { color: var(--gold); border-color: rgba(201,168,76,0.3); }
+
+    .wf-overlay {
+      display: none; position: fixed; inset: 0; z-index: 10000;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+      align-items: center; justify-content: center;
+    }
+    .wf-overlay.active { display: flex; }
+    .wf-modal {
+      background: #141414; border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 14px; padding: 36px; width: 100%; max-width: 460px;
+      font-family: 'Inter', sans-serif;
+    }
+    .wf-modal h3 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .wf-modal p { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 24px; }
+    .wf-modal p a { color: var(--gold); }
+    .wf-field { margin-bottom: 16px; }
+    .wf-field label { display: block; font-size: 11px; font-weight: 600; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+    .wf-field input {
+      width: 100%; background: #0d0d0d; border: 1px solid #2e2e2e; border-radius: 6px;
+      padding: 10px 14px; font-size: 14px; color: #fff; font-family: 'Inter', sans-serif;
+      outline: none; transition: border-color 0.2s;
+    }
+    .wf-field input:focus { border-color: rgba(201,168,76,0.5); }
+    .wf-field small { display: block; font-size: 11px; color: #555; margin-top: 4px; }
+    .wf-modal-actions { display: flex; gap: 10px; margin-top: 24px; }
+    .wf-modal-actions .wf-btn { flex: 1; padding: 11px; }
+
+    #wf-toast {
+      display: none; position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+      z-index: 10001; padding: 12px 24px; border-radius: 8px;
+      font-size: 13px; font-weight: 600; color: #fff;
+      font-family: 'Inter', sans-serif; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Walter<span>.</span>Ferreira</div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#cases">Cases</a></li>
+    <li><a href="#ia">IA</a></li>
+    <li><a href="#gestao">Gestão</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#portus">Portüs</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge e-zone">Disponível para nova oportunidade</div>
+        <h1 class="hero-name e-zone">Walter<br>Ferreira</h1>
+        <div class="hero-title e-zone">Estrategista Sênior de Marketing & Lançamentos</div>
+        <p class="hero-tagline e-zone">Estratégia que vai além do plano. IA que executa.<br>Resultado que aparece no caixa.</p>
+        <div class="hero-metrics">
+          <div class="metric">
+            <div class="metric-value e-zone">+R$10M</div>
+            <div class="metric-label e-zone">em faturamento gerado</div>
+          </div>
+          <div class="metric-sep"></div>
+          <div class="metric">
+            <div class="metric-value e-zone">50+</div>
+            <div class="metric-label e-zone">projetos entregues</div>
+          </div>
+          <div class="metric-sep"></div>
+          <div class="metric">
+            <div class="metric-value e-zone">ROAS 13</div>
+            <div class="metric-label e-zone">recorde em página de vendas</div>
+          </div>
+          <div class="metric-sep"></div>
+          <div class="metric">
+            <div class="metric-value e-zone">7 anos</div>
+            <div class="metric-label e-zone">no mercado digital</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img src="walter.png" alt="Walter Ferreira" class="hero-photo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="section-label">Quem é Walter</div>
+    <h2 class="section-title e-zone">A escolha que define quem eu sou.</h2>
+    <div class="divider"></div>
+    <div class="sobre-grid">
+      <div class="sobre-text">
+        <p class="e-zone">Antes de atuar com marketing, fui <strong>concursado</strong>. Tinha estabilidade, previsibilidade, o caminho mais seguro. Em 2018, fiz a escolha consciente de abrir mão disso para construir uma carreira em ambientes dinâmicos, orientados a crescimento e responsabilidade real.</p>
+        <p class="e-zone">Não foi impulso. Foi convicção. E essa escolha define como trabalho até hoje: <strong>só faz sentido estar onde posso causar impacto real no negócio.</strong></p>
+        <p class="e-zone">Nos últimos 7 anos atuei em educação, fintech, agências e infoprodutos, sempre conectando marketing à operação e a objetivos concretos de negócio. Passei por analista, coordenador, gerente e estrategista — o que me dá profundidade técnica sem perder a visão do todo.</p>
+        <p class="e-zone">Meu diferencial hoje é usar <strong>IA como infraestrutura de eficiência</strong>, não como tendência. Aplico em todas as etapas do funil: diagnóstico, aquisição, copy, automação, conversão e decisão.</p>
+        <div class="sobre-quote e-zone">"Marketing só faz sentido quando gera movimento, vendas e crescimento sustentável, respeitando a operação e a experiência do cliente."</div>
+      </div>
+      <div class="sobre-highlight">
+        <div class="sobre-stat"><div class="num e-zone">2018</div><div class="lbl e-zone">ano em que escolheu o digital sobre a estabilidade</div></div>
+        <div class="sobre-sep"></div>
+        <div class="sobre-stat"><div class="num e-zone">3+</div><div class="lbl e-zone">empresas onde liderou times de 10+ pessoas</div></div>
+        <div class="sobre-sep"></div>
+        <div class="sobre-stat"><div class="num e-zone">+R$10M</div><div class="lbl e-zone">em faturamento gerado para clientes e empregadores</div></div>
+        <div class="sobre-sep"></div>
+        <div class="sobre-stat"><div class="num e-zone">9</div><div class="lbl e-zone">ferramentas com IA entregues ao vivo no Grupo Dádiva em 4 meses</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="container">
+    <div class="section-label">Experiência & Cases</div>
+    <h2 class="section-title e-zone">Nomes, empresas e números.</h2>
+    <p class="section-sub e-zone">Cada case com contexto real, time real e número real. Sem estimativas ou arredondamentos favoráveis.</p>
+    <div class="divider"></div>
+    <div class="cases-intro e-zone">Atuei em lançamentos, perpétuo, performance e gestão de times em 5 empresas diferentes. Aqui estão os resultados que definem essa trajetória.</div>
+
+    <div class="case-card featured">
+      <div class="case-header">
+        <div>
+          <div class="case-company e-zone">Grupo Dádiva</div>
+          <div class="case-names e-zone">Bruno Capanema & Tatiana Gebrael</div>
+          <div class="case-meta e-zone">Estrategista & Gestor de Marketing · Janeiro 2026 – Presente (4 meses)</div>
+        </div>
+        <div class="case-badge e-zone">Atual</div>
+      </div>
+      <div class="case-body">
+        <div class="case-results">
+          <div class="result-chip"><div class="num e-zone">9</div><div class="desc e-zone">ferramentas com IA entregues e ao vivo em 4 meses</div></div>
+          <div class="result-chip"><div class="num e-zone">100%</div><div class="desc e-zone">das entregas sem designer ou dev externo</div></div>
+          <div class="result-chip"><div class="num e-zone">360°</div><div class="desc e-zone">diagnóstico em 6 áreas: copy, tráfego, CX, comercial, conteúdo, operação</div></div>
+        </div>
+        <ul class="case-bullets">
+          <li class="e-zone">Diagnóstico profundo das áreas-chave (Comercial, Conteúdo, Copy, Tráfego, CX e Operações), identificando gargalos reais e redefinindo responsabilidades</li>
+          <li class="e-zone">Criação de dashboards de lançamento em tempo real — visão de captação e vendas por produto para decisões durante o lançamento</li>
+          <li class="e-zone">Dashboard integrado Hotmart com faturamento mês a mês e visão da esteira que a plataforma não entrega nativamente</li>
+          <li class="e-zone">Landing pages, quiz interativo, diagnóstico comercial e calculadora de performance — todos criados com IA, sem dependência de equipe técnica</li>
+          <li class="e-zone">Calendário editorial com benchmark de conteúdos de maior performance e planejamento bilíngue (PT/ES) de 31 dias</li>
+        </ul>
+        <div class="case-tags"><span class="tag">Lançamentos</span><span class="tag">IA Aplicada</span><span class="tag">Dashboards</span><span class="tag">Diagnóstico Estratégico</span><span class="tag">Infoprodutos</span><span class="tag">Gestão de Operação</span></div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-header">
+        <div>
+          <div class="case-company e-zone">CP Iuris</div>
+          <div class="case-names e-zone">Educação Jurídica · Infoprodutos</div>
+          <div class="case-meta e-zone">Gerente de Marketing (Nov 2023 – Mai 2024) → Estrategista Digital (Jun 2024 – Ago 2025) · 1 ano 10 meses</div>
+        </div>
+        <div class="case-badge e-zone">Gerente → Estrategista</div>
+      </div>
+      <div class="case-body">
+        <div class="case-results">
+          <div class="result-chip"><div class="num e-zone">13,03</div><div class="desc e-zone">ROAS recorde em página de vendas criada do zero</div></div>
+          <div class="result-chip"><div class="num e-zone">+15%</div><div class="desc e-zone">no faturamento médio por lançamento com aula inaugural</div></div>
+          <div class="result-chip"><div class="num e-zone">10+</div><div class="desc e-zone">profissionais no time multifuncional gerenciado</div></div>
+        </div>
+        <ul class="case-bullets">
+          <li class="e-zone">Liderou planejamento estratégico e execução de lançamentos — captação, nutrição e vendas integradas em funil completo</li>
+          <li class="e-zone">Implementou estratégia de aula inaugural gratuita com pitch, gerando +15% de aumento médio no faturamento por lançamento</li>
+          <li class="e-zone">Criou funil perpétuo para geração de faturamento recorrente entre lançamentos</li>
+          <li class="e-zone">Construiu funil completo de aquisição qualificando leads para o time comercial e reduzindo o CAC</li>
+          <li class="e-zone">Gerenciou equipe com metodologia ágil: squads de Mídia, Conteúdo, Design e Estratégia</li>
+        </ul>
+        <div class="case-tags"><span class="tag">Lançamentos</span><span class="tag">Perpétuo</span><span class="tag">ROAS 13,03</span><span class="tag">Metodologia Ágil</span><span class="tag">Gestão de Time</span></div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-header">
+        <div>
+          <div class="case-company e-zone">Vamos Parcelar</div>
+          <div class="case-names e-zone">Fintech · Parcelamento regulamentado pelo Banco Central do Brasil</div>
+          <div class="case-meta e-zone">Gestor de Mídia (Jul–Set 2022) → Coordenador de Marketing (Set 2022 – Abr 2023) · 10 meses</div>
+        </div>
+        <div class="case-badge e-zone">Progressão 2 cargos</div>
+      </div>
+      <div class="case-body">
+        <div class="case-results">
+          <div class="result-chip"><div class="num e-zone">+23%</div><div class="desc e-zone">conversão na landing page via UI/UX e copy</div></div>
+          <div class="result-chip"><div class="num e-zone">12→21%</div><div class="desc e-zone">taxa de abertura de e-mail com capacitação de copy</div></div>
+          <div class="result-chip"><div class="num e-zone">10+</div><div class="desc e-zone">profissionais coordenados no time multifuncional</div></div>
+        </div>
+        <ul class="case-bullets">
+          <li class="e-zone">Progrediu de Gestor de Mídia a Coordenador em menos de 3 meses por resultados entregues</li>
+          <li class="e-zone">Aumentou a conversão da página de vendas em 23% via otimizações de UI/UX e Web Design</li>
+          <li class="e-zone">Elevou taxa de abertura de e-mails de 12% para 21% com capacitação de copy e segmentação avançada</li>
+          <li class="e-zone">Estruturou cultura DATA MARKETING: dashboards de campanha e relatórios como rotina da equipe</li>
+        </ul>
+        <div class="case-tags"><span class="tag">Performance</span><span class="tag">Data Marketing</span><span class="tag">CRO +23%</span><span class="tag">E-mail Marketing</span><span class="tag">Fintech</span></div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-header">
+        <div>
+          <div class="case-company e-zone">Ressoar Digital</div>
+          <div class="case-names e-zone">Assessoria de Marketing Digital</div>
+          <div class="case-meta e-zone">Analista de Marketing · Gestor de Mídia Paga e Performance · Julho 2021 – Janeiro 2023 (1 ano 7 meses)</div>
+        </div>
+        <div class="case-badge e-zone">Performance</div>
+      </div>
+      <div class="case-body">
+        <ul class="case-bullets">
+          <li class="e-zone">Planejou e executou campanhas de tráfego pago no Google Ads (Search, Display, YouTube) e Meta Ads com análise e otimização contínua</li>
+          <li class="e-zone">Gerenciou e distribuiu orçamentos de mídia com foco no melhor custo-benefício por objetivo de negócio</li>
+          <li class="e-zone">Desenvolveu copy para e-mails, anúncios e páginas de vendas com foco em conversão de leads</li>
+          <li class="e-zone">Dirigiu equipe de design no desenvolvimento de criativos para anúncios, site e landing pages</li>
+        </ul>
+        <div class="case-tags"><span class="tag">Meta Ads</span><span class="tag">Google Ads</span><span class="tag">YouTube Ads</span><span class="tag">Copywriting</span><span class="tag">Analytics</span></div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-header">
+        <div>
+          <div class="case-company e-zone">Estratégias Digitais Assessoria de Marketing</div>
+          <div class="case-names e-zone">Consultoria própria · 30+ clientes · Todo o Brasil</div>
+          <div class="case-meta e-zone">Especialista em Mídias Digitais · Gestor de Mídia Paga · Janeiro 2018 – Dezembro 2024 (7 anos)</div>
+        </div>
+        <div class="case-badge e-zone">7 anos</div>
+      </div>
+      <div class="case-body">
+        <div class="case-results">
+          <div class="result-chip"><div class="num e-zone">9,71</div><div class="desc e-zone">melhor ROI alcançado em lançamento</div></div>
+          <div class="result-chip"><div class="num e-zone">+42%</div><div class="desc e-zone">conversão em vendas em página reconstruída</div></div>
+          <div class="result-chip"><div class="num e-zone">+13%</div><div class="desc e-zone">faturamento médio por lançamento com pitch</div></div>
+          <div class="result-chip"><div class="num e-zone">6</div><div class="desc e-zone">lançamentos com saldo positivo consecutivos</div></div>
+        </div>
+        <ul class="case-bullets">
+          <li class="e-zone">Realizou 6 lançamentos consecutivos com saldo positivo, atingindo o melhor ROI de 9,71</li>
+          <li class="e-zone">Reconstruiu página de vendas gerando +42% de conversão — copy, estrutura e prova social redesenhados</li>
+          <li class="e-zone">Gerenciou tráfego pago em Meta Ads e Google Ads com pixel, GTM e otimização contínua</li>
+          <li class="e-zone">Configurou automações de e-mail, WhatsApp e Telegram integrados à Hotmart e ListBoss</li>
+        </ul>
+        <div class="case-tags"><span class="tag">Meta Ads</span><span class="tag">Google Ads</span><span class="tag">ROI 9,71</span><span class="tag">Hotmart</span><span class="tag">Automação</span><span class="tag">Copywriting</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IA -->
+<section id="ia">
+  <div class="container">
+    <div class="section-label">IA na Prática</div>
+    <h2 class="section-title e-zone">Heavy user não é promessa. É portfólio.</h2>
+    <p class="section-sub e-zone">Todos os projetos abaixo foram criados com IA, estão ao vivo e em uso dentro do Grupo Dádiva. Zero designer externo. Zero desenvolvedor contratado.</p>
+    <div class="divider"></div>
+    <div class="ia-grid">
+      <div class="ia-card"><div class="ia-icon">📊</div><div class="ia-title e-zone">Dashboard de Lançamento — Super Águias</div><div class="ia-desc e-zone">Visão em tempo real de captação e vendas por produto. Decisões de lançamento com dados.</div><a href="https://super-aguias-dashboard.vercel.app" target="_blank" class="ia-link">Ver projeto</a></div>
+      <div class="ia-card"><div class="ia-icon">📈</div><div class="ia-title e-zone">Dashboard de Funis — Dádiva</div><div class="ia-desc e-zone">Mapeamento completo dos funis do Grupo com visão clara de cada etapa de conversão.</div><a href="https://dadivadashfunis.lovable.app" target="_blank" class="ia-link">Ver projeto</a></div>
+      <div class="ia-card"><div class="ia-icon">💰</div><div class="ia-title e-zone">Dashboard Integrado Hotmart</div><div class="ia-desc e-zone">Visão de vendas, produtos e faturamento mês a mês — o que a Hotmart não entrega nativamente.</div><a href="https://dadivalaunch-prod.vercel.app" target="_blank" class="ia-link">Ver projeto</a></div>
+      <div class="ia-card"><div class="ia-icon">🎯</div><div class="ia-title e-zone">Landing Page 100% com IA</div><div class="ia-desc e-zone">Página de obrigado completa criada com IA — sem designer, sem desenvolvedor.</div><a href="https://super-aguias-obrigado.vercel.app" target="_blank" class="ia-link">Ver projeto</a></div>
+      <div class="ia-card"><div class="ia-icon">👁️</div><div class="ia-title e-zone">Teste Funcional de Visão</div><div class="ia-desc e-zone">Ferramenta interativa de diagnóstico para o público do Grupo Dádiva.</div><a href="https://testefuncionaldevisao.lovable.app" target="_blank" class="ia-link">Ver projeto</a></div>
+      <div class="ia-card"><div class="ia-icon">🦅</div><div class="ia-title e-zone">Quiz Olhos de Águia</div><div class="ia-desc e-zone">Quiz de qualificação e engajamento para o curso Super Águias.</div><a href="https://quizolhosdeaguia.lovable.app" target="_blank" class="ia-link">Ver projeto</a></div>
+      <div class="ia-card"><div class="ia-icon">🔬</div><div class="ia-title e-zone">Diagnóstico Time Comercial</div><div class="ia-desc e-zone">Ferramenta para mapear gargalos e oportunidades no time comercial.</div><a href="https://diagnosticotimecomercial.lovable.app" target="_blank" class="ia-link">Ver projeto</a></div>
+      <div class="ia-card"><div class="ia-icon">🧮</div><div class="ia-title e-zone">Calculadora Comercial Pro</div><div class="ia-desc e-zone">Calculadora de performance com métricas de conversão, CAC e projeções.</div><a href="https://comercialpro-calculadora-oficial.lovable.app" target="_blank" class="ia-link">Ver projeto</a></div>
+      <div class="ia-card"><div class="ia-icon">🌿</div><div class="ia-title e-zone">Guia de Saúde Natural</div><div class="ia-desc e-zone">Conteúdo educativo gerado com IA — pronto para distribuição como lead magnet.</div><a href="https://saude-natural-guia-completo.vercel.app" target="_blank" class="ia-link">Ver projeto</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- GESTÃO -->
+<section id="gestao">
+  <div class="container">
+    <div class="section-label">Liderança & Gestão</div>
+    <h2 class="section-title e-zone">Já liderei. Em três contextos diferentes.</h2>
+    <p class="section-sub e-zone">Não é meu primeiro time. Em três empresas diferentes, com perfis de operação distintos, coordenei equipes multifuncionais de 10 ou mais pessoas.</p>
+    <div class="divider"></div>
+    <div class="gestao-grid">
+      <div class="gestao-card"><div class="gestao-num e-zone">10+</div><div class="gestao-company e-zone">Grupo Dádiva</div><div class="gestao-role e-zone">Estrategista & Gestor</div><div class="gestao-desc e-zone">Estruturação de operação de marketing com foco em eficiência, processos e IA como infraestrutura de execução. Jan 2026 – presente.</div><div class="gestao-team-types"><span class="gestao-tag">Copy</span><span class="gestao-tag">Tráfego</span><span class="gestao-tag">Conteúdo</span><span class="gestao-tag">CX</span><span class="gestao-tag">Operação</span></div></div>
+      <div class="gestao-card"><div class="gestao-num e-zone">10+</div><div class="gestao-company e-zone">CP Iuris</div><div class="gestao-role e-zone">Gerente de Marketing</div><div class="gestao-desc e-zone">Gestão com metodologia ágil — squads de Mídia, Conteúdo, Design e Estratégia. Implantou área de analytics e documentou jornada de compra.</div><div class="gestao-team-types"><span class="gestao-tag">Designer</span><span class="gestao-tag">Copywriter</span><span class="gestao-tag">Videomaker</span><span class="gestao-tag">Performance</span><span class="gestao-tag">Dados</span></div></div>
+      <div class="gestao-card"><div class="gestao-num e-zone">10+</div><div class="gestao-company e-zone">Vamos Parcelar</div><div class="gestao-role e-zone">Coordenador de Marketing</div><div class="gestao-desc e-zone">Coordenação em fintech regulamentada. Implementou cultura data-driven e dashboards como rotina da equipe.</div><div class="gestao-team-types"><span class="gestao-tag">Analytics</span><span class="gestao-tag">Mídia Paga</span><span class="gestao-tag">Web Design</span><span class="gestao-tag">E-mail</span><span class="gestao-tag">Redação</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Arsenal Técnico</div>
+    <h2 class="section-title e-zone">O que eu domino.</h2>
+    <div class="divider"></div>
+    <div class="skills-grid">
+      <div class="skill-group"><div class="skill-group-title">Estratégia & Lançamentos</div><div class="skill-list"><div class="skill-item"><span class="skill-name e-zone">Lançamentos de infoprodutos</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">Marketing perpétuo</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">Diagnóstico estratégico</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">Funil de vendas completo</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:93%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">Controle orçamentário</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div></div></div>
+      <div class="skill-group"><div class="skill-group-title">Tráfego & Performance</div><div class="skill-list"><div class="skill-item"><span class="skill-name e-zone">Meta Ads</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:93%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">Google Ads</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">Analytics & Data</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:87%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">CRO (otimização de conversão)</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">Google Tag Manager</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div></div></div>
+      <div class="skill-group"><div class="skill-group-title">IA & Automação</div><div class="skill-list"><div class="skill-item"><span class="skill-name e-zone">IA aplicada ao marketing</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">Criação de ferramentas com IA</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:93%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">Automação e-mail / WhatsApp</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">Hotmart / Plataformas EAD</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">CRM & Gestão de leads</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div></div></div>
+      <div class="skill-group"><div class="skill-group-title">Copy & Conteúdo</div><div class="skill-list"><div class="skill-item"><span class="skill-name e-zone">Copywriting de vendas</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">Páginas de alta conversão</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">E-mail marketing</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">Estratégia de conteúdo</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:84%"></div></div></div><div class="skill-item"><span class="skill-name e-zone">Pitch de fechamento</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAÇÃO -->
+<section id="formacao">
+  <div class="container">
+    <div class="section-label">Formação & Certificações</div>
+    <h2 class="section-title e-zone">Base técnica e crescimento contínuo.</h2>
+    <div class="divider"></div>
+    <div class="form-grid">
+      <div class="form-card"><div class="form-type">Graduação</div><div class="form-inst e-zone">Estácio</div><div class="form-course e-zone">Tecnólogo em Tecnologia em Redes de Computadores</div><div class="form-period e-zone">2008 – 2011</div></div>
+      <div class="form-card"><div class="form-type">Técnico</div><div class="form-inst e-zone">ETB — Escola Técnica de Brasília</div><div class="form-course e-zone">Técnico em Informática · Manutenção e Suporte</div><div class="form-period e-zone">2007 – 2008</div></div>
+      <div class="form-card"><div class="form-type">Academia</div><div class="form-inst e-zone">GLA | Growth Leaders Academy</div><div class="form-course e-zone">Membro · Marketing & Growth</div><div class="form-period e-zone">Maio de 2024</div></div>
+      <div class="form-card"><div class="form-type">Certificações</div><div class="form-inst e-zone">Certificações Oficiais</div><div class="form-course e-zone">Growth Online · Vibe Coding · Google Ads · Meta Blueprint</div><div class="form-period e-zone">Contínuo</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTUS -->
+<section id="portus">
+  <div class="container">
+    <div class="portus-inner">
+      <div class="section-label" style="text-align:center;margin-bottom:10px;">Por que a Portüs</div>
+      <h2 class="section-title e-zone" style="text-align:center;">Uma carta direta.</h2>
+      <div class="divider" style="margin:18px auto 36px;"></div>
+      <div class="portus-letter">
+        <div class="portus-to e-zone">Para: Kelly Leto — Portüs Digital</div>
+        <p class="portus-text e-zone">Kelly, você pediu para adiantar os cases antes mesmo de perguntar. Então vai: <strong>Grupo Dádiva com Bruno Capanema e Tatiana Gebrael</strong>, operação bilíngue com lançamentos internacionais — 9 ferramentas com IA entregues em 4 meses. <strong>CP Iuris</strong>, ROAS 13,03 em página de vendas de alto ticket, funil perpétuo rodando entre lançamentos, +15% no faturamento médio por lançamento. <strong>Vamos Parcelar</strong>, fintech regulamentada pelo Banco Central, +23% de conversão em landing page.</p>
+        <div class="portus-highlight e-zone">Você disse que precisa de "uma terceira cabeça para focar em marketing." Não de um fornecedor. Não de alguém que vai precisar de um líder para dizer o que fazer. De alguém que chega e estrutura.</div>
+        <p class="portus-text e-zone">É exatamente o que eu faço. Em três empresas diferentes, em três contextos diferentes, com times de 10 ou mais pessoas — eu cheguei, diagnostiquei, estruturei e executei. <strong>Sem esperar briefing perfeito. Sem depender de hierarquia.</strong> Com dados, processos e IA como infraestrutura de eficiência.</p>
+        <p class="portus-text e-zone">Sou heavy user de IA — não como buzzword, mas como vantagem operacional real. Os nove projetos ao vivo que você viu neste portfolio foram criados por mim, com IA, sem designer e sem desenvolvedor externo.</p>
+        <p class="portus-text e-zone">Em 2018, abri mão de um cargo público estável para construir carreira no digital. Essa escolha foi intencional. E ela define como trabalho: <strong>só faz sentido estar onde posso causar impacto real no negócio.</strong> A Portüs é exatamente esse tipo de projeto.</p>
+        <p class="portus-text e-zone">Não vim candidatar em uma vaga. Vim propor uma parceria que faz sentido para os dois lados.</p>
+        <div class="portus-sign"><span class="e-zone">Walter Ferreira</span><span class="e-zone">Estrategista Sênior de Marketing & Lançamentos · +55 61 99935-4363</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="container">
+    <div class="section-label">Contato</div>
+    <h2 class="section-title e-zone">Vamos conversar.</h2>
+    <p class="section-sub e-zone">Se chegou até aqui, já temos o suficiente para uma conversa que vale o tempo dos dois.</p>
+    <div class="divider"></div>
+    <div class="contato-grid">
+      <a href="https://wa.me/5561999354363?text=Ol%C3%A1%20Walter%2C%20vi%20seu%20portfolio%20e%20quero%20conversar" target="_blank" class="contato-btn btn-gold">💬 WhatsApp</a>
+      <a href="https://www.linkedin.com/in/walterferreiralacerda/" target="_blank" class="contato-btn btn-outline">LinkedIn</a>
+      <a href="https://www.instagram.com/_walterferreira_/" target="_blank" class="contato-btn btn-outline">Instagram</a>
+    </div>
+    <div class="contato-info e-zone">Brasília, DF · walterfdds@gmail.com · Atendimento remoto em todo o Brasil</div>
+  </div>
+</section>
+
+<footer>
+  <span class="admin-trigger-area" onclick="wfAdmin.handleTrigger()" title="Admin">© 2026 Walter Ferreira · Estrategista Sênior de Marketing & Lançamentos</span>
+</footer>
+
+<!-- ── ADMIN BAR ── -->
+<div id="wf-admin-bar">
+  <div class="wf-bar-left">
+    <div class="wf-bar-dot"></div>
+    <span class="wf-bar-label">Modo de Edição</span>
+    <span class="wf-bar-hint">Clique em qualquer texto dourado para editar</span>
+  </div>
+  <div class="wf-bar-actions">
+    <button class="wf-btn wf-btn-settings" onclick="wfAdmin.showSetup()" title="Configurações GitHub">⚙</button>
+    <button class="wf-btn wf-btn-ghost" onclick="wfAdmin.exit()">Cancelar</button>
+    <button id="wf-publish-btn" class="wf-btn wf-btn-primary" onclick="wfAdmin.publish()">🚀 Publicar</button>
+  </div>
+</div>
+
+<!-- ── SETUP MODAL ── -->
+<div id="wf-setup-overlay" class="wf-overlay">
+  <div class="wf-modal">
+    <h3>Configurar publicação</h3>
+    <p>Conecte ao GitHub para publicar alterações direto do site. Crie um token em <a href="https://github.com/settings/tokens/new?scopes=repo&description=Portfolio+Walter" target="_blank">github.com/settings/tokens</a> com permissão <strong>repo</strong>.</p>
+    <div class="wf-field">
+      <label>Usuário GitHub</label>
+      <input id="wf-gh-owner" type="text" placeholder="seu-usuario-github">
+    </div>
+    <div class="wf-field">
+      <label>Nome do repositório</label>
+      <input id="wf-gh-repo" type="text" placeholder="walter-portfolio" value="walter-portfolio">
+    </div>
+    <div class="wf-field">
+      <label>Token de acesso pessoal</label>
+      <input id="wf-gh-token" type="password" placeholder="ghp_xxxxxxxxxxxx">
+      <small>Armazenado apenas neste navegador. Nunca compartilhado.</small>
+    </div>
+    <div class="wf-modal-actions">
+      <button class="wf-btn wf-btn-ghost" onclick="wfAdmin.closeSetup()">Cancelar</button>
+      <button class="wf-btn wf-btn-primary" onclick="wfAdmin.saveSetup()">Salvar e editar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST ── -->
+<div id="wf-toast"></div>
+
+<script>
+(function () {
+  'use strict';
+  var STORAGE_KEY = 'wf_gh_cfg_v1';
+  var editActive = false;
+
+  function getConfig() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (e) { return null; }
+  }
+
+  function handleTrigger() {
+    var config = getConfig();
+    if (!config) { showSetup(); } else { enterEdit(); }
+  }
+
+  function showSetup() {
+    var cfg = getConfig();
+    if (cfg) {
+      document.getElementById('wf-gh-owner').value = cfg.owner || '';
+      document.getElementById('wf-gh-repo').value = cfg.repo || 'walter-portfolio';
+      document.getElementById('wf-gh-token').value = cfg.token || '';
+    }
+    document.getElementById('wf-setup-overlay').classList.add('active');
+  }
+
+  function closeSetup() {
+    document.getElementById('wf-setup-overlay').classList.remove('active');
+  }
+
+  function saveSetup() {
+    var owner = document.getElementById('wf-gh-owner').value.trim();
+    var repo = document.getElementById('wf-gh-repo').value.trim();
+    var token = document.getElementById('wf-gh-token').value.trim();
+    if (!owner || !repo || !token) { alert('Preencha todos os campos.'); return; }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ owner: owner, repo: repo, token: token }));
+    closeSetup();
+    enterEdit();
+  }
+
+  function enterEdit() {
+    editActive = true;
+    document.body.classList.add('wf-edit-mode');
+    document.getElementById('wf-admin-bar').style.display = 'flex';
+    document.querySelectorAll('.e-zone').forEach(function (el) {
+      el.contentEditable = 'true';
+      el.spellcheck = false;
+    });
+  }
+
+  function exit() {
+    editActive = false;
+    document.body.classList.remove('wf-edit-mode');
+    document.getElementById('wf-admin-bar').style.display = 'none';
+    document.querySelectorAll('.e-zone').forEach(function (el) {
+      el.contentEditable = 'false';
+    });
+  }
+
+  function toBase64(str) {
+    var bytes = new TextEncoder().encode(str);
+    var binary = '';
+    bytes.forEach(function (b) { binary += String.fromCharCode(b); });
+    return btoa(binary);
+  }
+
+  function showToast(msg, isError) {
+    var t = document.getElementById('wf-toast');
+    t.textContent = msg;
+    t.style.background = isError ? '#c0392b' : '#1a6e35';
+    t.style.display = 'block';
+    setTimeout(function () { t.style.display = 'none'; }, 5000);
+  }
+
+  function publish() {
+    var config = getConfig();
+    if (!config) { showSetup(); return; }
+
+    var btn = document.getElementById('wf-publish-btn');
+    btn.textContent = 'Publicando...';
+    btn.disabled = true;
+
+    // Exit edit mode so contenteditable attrs are removed from saved HTML
+    exit();
+
+    // Capture clean HTML
+    var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+    var apiBase = 'https://api.github.com/repos/' + config.owner + '/' + config.repo + '/contents/index.html';
+    var headers = {
+      'Authorization': 'Bearer ' + config.token,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(apiBase, { headers: headers })
+      .then(function (r) {
+        if (!r.ok) throw new Error('Repositório não encontrado. Verifique usuário, repo e token.');
+        return r.json();
+      })
+      .then(function (fileData) {
+        return fetch(apiBase, {
+          method: 'PUT',
+          headers: headers,
+          body: JSON.stringify({
+            message: 'Atualização do portfolio — ' + new Date().toLocaleString('pt-BR'),
+            content: toBase64(html),
+            sha: fileData.sha
+          })
+        });
+      })
+      .then(function (r) {
+        if (!r.ok) return r.json().then(function (e) { throw new Error(e.message || 'Erro ao publicar'); });
+        showToast('✓ Publicado! O site atualiza em ~30 segundos.');
+      })
+      .catch(function (err) {
+        showToast('✗ ' + err.message, true);
+        enterEdit(); // restore edit mode on error
+      })
+      .finally(function () {
+        btn.textContent = '🚀 Publicar';
+        btn.disabled = false;
+      });
+  }
+
+  // Keyboard shortcut: Ctrl+Shift+E
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && e.shiftKey && e.key === 'E') { handleTrigger(); }
+  });
+
+  window.wfAdmin = { handleTrigger: handleTrigger, showSetup: showSetup, closeSetup: closeSetup, saveSetup: saveSetup, exit: exit, publish: publish };
+})();
+</script>
+
+</body>
+</html>
