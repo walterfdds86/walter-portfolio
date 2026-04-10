@@ -1,0 +1,21 @@
+name: Deploy para Vercel
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Deploy para produção
+        run: vercel --prod --yes --scope estrategias-digitais-projects --token ${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: team_J7ksycNTQHqE5kJjPkvrV8gO
+          VERCEL_PROJECT_ID: prj_ALGY6IylH6AsO4wMU36rpCRTUu4l
